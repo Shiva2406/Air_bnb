@@ -1,0 +1,165 @@
+<% layout('/layouts/boilerplate') %> 
+<body>
+   <style>
+    #filters {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    #filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter {
+        text-align: center;
+        margin-right: 4rem;
+        margin-top: 2rem;
+        opacity: 0.7;
+        flex-shrink: 0;
+    }
+    .filter:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+    .filter p {
+        font-size: 0.8rem;
+    }
+
+    .listing-card {
+    width: 100%; 
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: white;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.list-link {
+    width: 100%;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 65%; 
+    object-fit: cover; 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    height: 35%;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-text {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.row {
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .listing-card {
+        height: 350px;
+    }
+}
+
+@media (max-width: 576px) {
+    .listing-card {
+        height: 450px;
+    }
+}
+
+ 
+   </style>
+    <div id="filters">
+        <div class="filter">
+            <div><i class="fa-solid fa-fire"></i></div>
+            <p>Trending</p> 
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-bed"></i></div>
+            <p>Rooms</p> 
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i></div>
+            <p>Iconic cities</p> 
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain"></i></div>
+            <p>Mountains</p> 
+        </div>
+        <div class="filter">
+            <div><i class="fa-brands fa-fort-awesome"></i></div>
+            <p>Castles</p> 
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-person-swimming"></i></div>
+            <p>Amazing Polls</p> 
+        </div> 
+        <div class="filter">
+            <div><i class="fa-solid fa-campground"></i></div>
+            <p>Camping</p> 
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-tractor"></i></div>
+            <p>Farms</p> 
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-igloo"></i></div>
+            <p>Arctic</p> 
+        </div> 
+        <div class="filter">
+            <div><i class="fa-solid fa-landmark-dome"></i></div>
+            <p>Domes</p> 
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-ship"></i></div>
+            <p>Boats</p> 
+        </div>
+    </div>
+    <div class="row">
+        <% for(let list of allListings) { %>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 d-flex justify-content-center">
+                <a href="/listings/<%= list.id %>" class="list-link" style="text-decoration: none;">
+                    <div class="card listing-card">
+                        <img src="<%= list.image.url %>" class="card-img-top" alt="listings-img">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <b><%= list.title %></b><br>
+                                &#8377; <%= list.price %>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <% } %>
+    </div>
+</body>
